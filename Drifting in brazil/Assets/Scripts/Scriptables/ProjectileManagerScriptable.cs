@@ -10,9 +10,12 @@ public class ProjectileManagerScriptable : MonoBehaviour
     public Transform muzzleFlashPosition;
     public GameObject projectile;
     public GameObject muzzleFlash;
+    public GameObject laserPointer;
     public WeaponScriptableObject currentWeapon;
     public List<WeaponScriptableObject> weaponsCollected;
     public TextMeshProUGUI currentWeaponText;
+
+    private bool laserOn = false;
 
     //FULL AUTO FUNCTION
     private float lastAttackTime = 0f;
@@ -26,6 +29,9 @@ public class ProjectileManagerScriptable : MonoBehaviour
     {
         weaponsCollected.Add(currentWeapon);
         //currentWeaponText.text = currentWeapon.weaponName;
+
+        laserPointer.gameObject.SetActive(false);
+        laserOn = false;
     }
 
     // Update is called once per frame
@@ -45,6 +51,20 @@ public class ProjectileManagerScriptable : MonoBehaviour
                 }
 
             }     
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (laserOn == false)
+            {
+                laserPointer.gameObject.SetActive(true);
+                laserOn = true;
+            }
+            else
+            {
+                laserPointer.gameObject.SetActive(false);
+                laserOn = false;
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.R))

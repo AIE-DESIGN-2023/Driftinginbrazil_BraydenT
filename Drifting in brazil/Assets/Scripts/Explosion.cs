@@ -30,7 +30,7 @@ public class Explosion : Damager
                     damageable.Damage(damageStrength);
                 }
             }
-
+            
             if (colliders[i].gameObject.tag == "Player")
             {
                 PlayerHealth damageable = colliders[i].gameObject.GetComponent<PlayerHealth>();
@@ -39,7 +39,7 @@ public class Explosion : Damager
                     damageable.TakeDamage(damageStrength);
                 }
             }
-
+            
             if (colliders[i].gameObject.tag == "Enemy")
             {
                 EnemyHealth damageable = colliders[i].gameObject.GetComponent<EnemyHealth>();
