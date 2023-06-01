@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class EnemyHealth : MonoBehaviour
+public class Damageable : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
@@ -11,6 +12,10 @@ public class EnemyHealth : MonoBehaviour
 
     private Transform canvas;
     private Transform player;
+    public UnityEvent OnDie;
+
+    [SerializeField]
+    private float ExplosionDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
         //set current health to max health
         currentHealth = maxHealth;
         canvas = GetComponentInChildren<Canvas>().transform;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
@@ -28,16 +33,28 @@ public class EnemyHealth : MonoBehaviour
         //canvas.LookAt(positionToLookAt);
     }
 
-    public void TakeDamage(int damageToTake)
+    public void Damage(float damageToTake)
     {
+        if (currentHealth <= 0)
+            return;
+
         currentHealth -= damageToTake;
+        Debug.Log("damage taken");
 
         //update image to show new health
         healthBar.fillAmount = currentHealth / maxHealth;
 
         if (currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            StartCoroutine(Die(ExplosionDelay));
         }
+    }
+
+
+
+    private IEnumerator Die(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        OnDie.Invoke();
     }
 }

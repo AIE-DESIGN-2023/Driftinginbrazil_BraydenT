@@ -7,7 +7,9 @@ using UnityEngine;
 public class ProjectileManagerScriptable : MonoBehaviour
 {
     public Transform spawnPosition;
+    public Transform muzzleFlashPosition;
     public GameObject projectile;
+    public GameObject muzzleFlash;
     public WeaponScriptableObject currentWeapon;
     public List<WeaponScriptableObject> weaponsCollected;
     public TextMeshProUGUI currentWeaponText;
@@ -23,7 +25,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
     void Start()
     {
         weaponsCollected.Add(currentWeapon);
-        currentWeaponText.text = currentWeapon.weaponName;
+        //currentWeaponText.text = currentWeapon.weaponName;
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
                 {
                     //null is for the fact it does not have a parent
                 Instantiate(currentWeapon.bullet, spawnPosition.position, spawnPosition.rotation, null);
+                    Instantiate(muzzleFlash, muzzleFlashPosition.position, muzzleFlashPosition.rotation, null);
                 currentClip--;
                     lastAttackTime = Time.time;
                 }

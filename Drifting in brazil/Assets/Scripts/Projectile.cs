@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     //variables for speed
     public float speed;
     public float lifetime;
-    public int damage;
+    public int damageStrength;
     public bool isEnemyBullet;
 
     //variable for the rigidbody component and lifetime
@@ -37,8 +37,18 @@ public class Projectile : MonoBehaviour
     }
 
     //collides with any collider
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject.tag == "Damageable")
+        {
+            Damageable damageable = collision.gameObject.GetComponent<Damageable>();
+            if (damageable != null)
+            {
+                damageable.Damage(damageStrength);
+            }
+        }
+
+
         if (isEnemyBullet == false)
         {
             //check if the object we hit is tagged enemy
@@ -48,7 +58,7 @@ public class Projectile : MonoBehaviour
                 EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(damage);
+                    enemyHealth.TakeDamage(damageStrength);
                 }
             }
         }
@@ -59,7 +69,7 @@ public class Projectile : MonoBehaviour
                 PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(damage);
+                    playerHealth.TakeDamage(damageStrength);
                 }
             }
         }
