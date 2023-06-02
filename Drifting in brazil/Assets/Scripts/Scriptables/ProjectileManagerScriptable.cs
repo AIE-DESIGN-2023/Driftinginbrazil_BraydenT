@@ -34,6 +34,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
         laserOn = false;
     }
 
+
     // Update is called once per frame
     void Update()
     {

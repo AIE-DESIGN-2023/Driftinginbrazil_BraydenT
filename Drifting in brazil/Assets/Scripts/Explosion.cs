@@ -12,6 +12,9 @@ public class Explosion : Damager
 
     private void Explode()
     {
+        CameraShaker.Invoke();
+        Debug.Log("Shake camera");
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
 
         for(int i = 0; i < colliders.Length; i++)

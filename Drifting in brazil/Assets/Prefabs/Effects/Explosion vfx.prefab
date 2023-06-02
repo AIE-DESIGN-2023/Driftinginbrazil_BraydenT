@@ -9814,7 +9814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   radius: 1.8
-  power: 6
+  power: 20
   damageStrength: 50
 --- !u!1 &4381123851790649405
 GameObject:

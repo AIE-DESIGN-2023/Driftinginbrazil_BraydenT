@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
 
         // Drag and max speed limit
         MoveForce *= Drag;
-        MoveForce = Vector3.ClampMagnitude(MoveForce, MaxSpeed);
+        Vector3.ClampMagnitude(MoveForce, MaxSpeed);
 
         // Traction
         Debug.DrawRay(transform.position, MoveForce.normalized * 3);

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collision)
+    public void OnTriggerEnter(Collision collision)
     {
-        ProjectileManagerScriptable weapon = collision.gameObject.GetComponentInChildren<ProjectileManagerScriptable>();
-        if (weapon)
+        if (collision.gameObject.tag == "AmmoPickup")
         {
-            weapon.AddAmmo(weapon.maxAmmoSize);
-            Destroy(gameObject);
+            ProjectileManagerScriptable weapon = collision.gameObject.GetComponentInChildren<ProjectileManagerScriptable>();
+            if (weapon)
+            {
+                weapon.AddAmmo(weapon.maxAmmoSize);
+                Destroy(gameObject);
+            }
         }
     }
 }

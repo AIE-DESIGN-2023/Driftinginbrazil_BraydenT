@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Damageable
+  - AmmoPickup
   layers:
   - Default
   - TransparentFX
