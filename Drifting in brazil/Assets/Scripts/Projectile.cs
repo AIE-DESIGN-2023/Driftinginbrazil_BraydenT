@@ -82,9 +82,4 @@ public class Projectile : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Instantiate(impactFX, transform.position, Quaternion.identity);
-        Destroy(this.gameObject);
-    }
 }

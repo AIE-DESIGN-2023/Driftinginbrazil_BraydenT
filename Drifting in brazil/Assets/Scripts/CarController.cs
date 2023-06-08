@@ -1,31 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CarController : MonoBehaviour
 {
 
     // Settings
-    public float MoveSpeed = 50;
+    public float Speed = 50;
     public float MaxSpeed = 15;
+    public float MoveSpeed;
+    public float NitroSpeed;
     public float Drag = 0.98f;
     public float SteerAngle = 20;
     public float Traction = 1;
 
     public int damageStrength;
 
+    public Image nitroBar;
+    public float minNitro = 0;
+    public float maxNitro = 10;
+    public float currentNitro;
+    public bool nitroOn = false;
+    private bool refillNitro = false;
+    public GameObject nitroFX;
+
     private Vector3 MoveForce;
 
     Rigidbody rb;
+    [SerializeField] TextMeshProUGUI hud;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        currentNitro = minNitro;
+        nitroFX.gameObject.SetActive(false);
+        nitroOn = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        MoveSpeed = Speed + NitroSpeed;
+
         // Moving
         MoveForce += transform.forward * MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
         transform.position += MoveForce * Time.deltaTime;
@@ -43,6 +63,70 @@ public class CarController : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * 3, Color.blue);
         //MoveForce = Vector3.Lerp(MoveForce.normalized, transform.forward, Traction * Time.deltaTime) * MoveForce.magnitude;
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (nitroOn == false)
+            {
+                if (currentNitro >= maxNitro)
+                {
+                    currentNitro = maxNitro - 0.01f;
+                    nitroOn = true;
+                }
+            }
+        }
+
+        if (nitroOn == true)
+        {
+            NitroActive();
+            refillNitro = false;
+            nitroFX.gameObject.SetActive(true);
+        }
+        
+        if (nitroOn == false)
+        {
+            NitroUnactive();
+        }
+
+        if (currentNitro < minNitro)
+        {
+            nitroOn = false;
+            Debug.Log("nitro set to false");
+            nitroFX.gameObject.SetActive(false);
+            refillNitro = true;
+            Debug.Log("Adding nitro");
+        }
+
+        if (currentNitro > maxNitro)
+        {
+            currentNitro = maxNitro;
+            nitroOn = false;
+        }
+
+        if (refillNitro == true)
+        {
+            currentNitro += Time.deltaTime;
+        }
+        else
+        {
+            currentNitro -= Time.deltaTime;
+        }
+
+        nitroBar.fillAmount = currentNitro / maxNitro;
+
+    }
+
+
+
+    void NitroActive()
+    {
+        Debug.Log("NitroActive is active");
+        NitroSpeed = 5;
+        SteerAngle = 25;
+    }
+    void NitroUnactive()
+    {
+        NitroSpeed = 0;
+        SteerAngle = 35;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -75,4 +159,6 @@ public class CarController : MonoBehaviour
             }
         }
     }
+
+
 }
