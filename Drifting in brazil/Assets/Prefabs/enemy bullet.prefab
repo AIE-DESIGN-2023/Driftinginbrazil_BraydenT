@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -175907938997307998}
   - component: {fileID: 75041910488337494}
   m_Layer: 0
-  m_Name: Bullet 1
+  m_Name: enemy bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ced93a1f96fad46a7b28b712817c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 15
   lifetime: 3
   damageStrength: 20
-  isEnemyBullet: 0
-  impactFX: {fileID: 7891132971126447770, guid: da8380146717bdd4ebdc829b4ca659f8, type: 3}
+  isEnemyBullet: 1
+  impactFX: {fileID: 7891132971126447770, guid: 179ab4a7815c0fa4dace13b0eb4e99f1, type: 3}
   lifetimeCounter: 0
 --- !u!1 &4619463179482122655
 GameObject:
@@ -5046,7 +5046,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 72fe4646e3a1e92439370e6f01461bce, type: 2}
+  - {fileID: 2100000, guid: e963d1556e3e6bb4697544e91bf8b763, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public float lifetime;
     public int damageStrength;
     public bool isEnemyBullet;
+    public GameObject impactFX;
 
     //variable for the rigidbody component and lifetime
     private Rigidbody rb;
@@ -39,6 +40,8 @@ public class Projectile : MonoBehaviour
     //collides with any collider
     private void OnTriggerEnter(Collider collision)
     {
+        Instantiate(impactFX, transform.position, Quaternion.identity);
+
         if (collision.gameObject.tag == "Damageable")
         {
             Damageable damageable = collision.gameObject.GetComponent<Damageable>();
@@ -74,7 +77,14 @@ public class Projectile : MonoBehaviour
             }
         }
 
+        
         //final command
+        Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Instantiate(impactFX, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

@@ -12,6 +12,8 @@ public class CarController : MonoBehaviour
     public float SteerAngle = 20;
     public float Traction = 1;
 
+    public int damageStrength;
+
     private Vector3 MoveForce;
 
     Rigidbody rb;
@@ -40,7 +42,7 @@ public class CarController : MonoBehaviour
         Debug.DrawRay(transform.position, MoveForce.normalized * 3);
         Debug.DrawRay(transform.position, transform.forward * 3, Color.blue);
         //MoveForce = Vector3.Lerp(MoveForce.normalized, transform.forward, Traction * Time.deltaTime) * MoveForce.magnitude;
-        
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -49,4 +51,28 @@ public class CarController : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Damageable")
+        {
+            Damageable damageable = collision.gameObject.GetComponent<Damageable>();
+            if (damageable != null)
+            {
+                damageable.Damage(damageStrength);
+            }
+        }
+
+        {
+            //check if the object we hit is tagged enemy
+            if (collision.gameObject.tag == "Enemy")
+            {
+                //check if collision object has enemy health script
+                EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(damageStrength);
+                }
+            }
+        }
+    }
 }
