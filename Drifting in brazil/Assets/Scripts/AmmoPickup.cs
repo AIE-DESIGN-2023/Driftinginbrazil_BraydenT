@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
+    public GameObject addAmmoText;
+    public Transform addAmmoTextSpawn;
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -14,6 +17,7 @@ public class AmmoPickup : MonoBehaviour
             {
                 Debug.Log("Adding ammo");
                 weapon.AddAmmo(200);
+                Instantiate(addAmmoText, addAmmoTextSpawn.position, addAmmoTextSpawn.rotation, null);
                 Destroy(gameObject);
             }
         }

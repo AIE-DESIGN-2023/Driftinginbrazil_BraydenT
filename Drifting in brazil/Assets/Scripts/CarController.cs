@@ -27,6 +27,11 @@ public class CarController : MonoBehaviour
     private bool refillNitro = false;
     public GameObject nitroFX;
 
+    public GameObject bonkFX;
+    public GameObject bonkText;
+    public Transform bonkFXspawn;
+    public Transform bonkTextSpawn;
+
     private Vector3 MoveForce;
 
     Rigidbody rb;
@@ -143,6 +148,8 @@ public class CarController : MonoBehaviour
             if (damageable != null)
             {
                 damageable.Damage(damageStrength);
+                Instantiate(bonkFX, bonkFXspawn.position, bonkFXspawn.rotation, null);
+                Instantiate(bonkText, bonkTextSpawn.position, bonkTextSpawn.rotation, null);
             }
         }
 
@@ -155,6 +162,8 @@ public class CarController : MonoBehaviour
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(damageStrength);
+                    Instantiate(bonkFX, bonkFXspawn.position, bonkFXspawn.rotation, null);
+                    Instantiate(bonkText, bonkTextSpawn.position, bonkTextSpawn.rotation, null);
                 }
             }
         }
