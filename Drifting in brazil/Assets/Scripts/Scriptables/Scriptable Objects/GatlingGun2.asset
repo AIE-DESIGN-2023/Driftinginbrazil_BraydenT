@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826f735e2920c2c46b55ce9d5e9f2cca, type: 3}
   m_Name: GatlingGun2
   m_EditorClassIdentifier: 
-  weaponName: GatlingGun2
+  weaponName: Gatling Gun
   bullet: {fileID: 3746582191070374004, guid: 239638de11d3c9c45ac80492bc2b642c, type: 3}

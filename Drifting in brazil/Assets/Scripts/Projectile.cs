@@ -38,48 +38,54 @@ public class Projectile : MonoBehaviour
     }
 
     //collides with any collider
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
         Instantiate(impactFX, transform.position, Quaternion.identity);
 
-        if (collision.gameObject.tag == "Damageable")
+        if (other.gameObject.tag == "Damageable")
         {
-            Damageable damageable = collision.gameObject.GetComponent<Damageable>();
+            Damageable damageable = other.gameObject.GetComponent<Damageable>();
             if (damageable != null)
             {
                 damageable.Damage(damageStrength);
             }
+
+            Destroy(this.gameObject);
         }
 
 
         if (isEnemyBullet == false)
         {
             //check if the object we hit is tagged enemy
-            if (collision.gameObject.tag == "Enemy")
+            if (other.gameObject.tag == "Enemy")
             {
                 //check if collision object has enemy health script
-                EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+                EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(damageStrength);
                 }
             }
+
+            Destroy(this.gameObject);
         }
         else
         {
-            if (collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
-                PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+                PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(damageStrength);
                 }
             }
-        }
 
-        
-        //final command
-        Destroy(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(this.gameObject);
+    }
 }

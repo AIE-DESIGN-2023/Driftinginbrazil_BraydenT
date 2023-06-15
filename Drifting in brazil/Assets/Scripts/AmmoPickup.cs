@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
-    public void OnTriggerEnter(Collider collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log("Hit an ammo pickup");
-            ProjectileManagerScriptable weapon = collision.GetComponentInChildren<ProjectileManagerScriptable>();
+            ProjectileManagerScriptable weapon = other.GetComponentInChildren<ProjectileManagerScriptable>();
             if (weapon != null)
             {
                 Debug.Log("Adding ammo");

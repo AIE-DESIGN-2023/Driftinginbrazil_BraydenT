@@ -44,7 +44,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.7841549, b: 0.4575472, a: 1}
+  m_Color: {r: 0.5990566, g: 0.7228967, b: 1, a: 1}
   m_Intensity: 1.73
   m_Range: 1.5
   m_SpotAngle: 30
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7678434648021229388}
   - component: {fileID: -5248382904562000311}
   m_Layer: 0
-  m_Name: ImpactFX
+  m_Name: ImpactFX2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4930,7 +4930,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 72fe4646e3a1e92439370e6f01461bce, type: 2}
+  - {fileID: 2100000, guid: 8aae422584a1e1d478b4f0a3c43aaaa5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

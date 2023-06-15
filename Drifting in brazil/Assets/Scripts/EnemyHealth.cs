@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+
     public float maxHealth;
     public float currentHealth;
     public Image healthBar;
 
     private Transform canvas;
     private Transform player;
+
+    public int moneyToDrop = 30;
+    MoneyManagerScript moneyManager;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         canvas = GetComponentInChildren<Canvas>().transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        moneyManager = FindObjectOfType<MoneyManagerScript>();
     }
 
     private void Update()
@@ -37,7 +42,19 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            DoAddMoney();
+            Destroy(gameObject);
+            Debug.Log("destroy enemy");
+        }
+    }
+
+    void DoAddMoney()
+    {
+        
+        if (moneyManager != null)
+        {
+            Debug.Log("Adding money");
+            moneyManager.AddMoney(moneyToDrop);
         }
     }
 }

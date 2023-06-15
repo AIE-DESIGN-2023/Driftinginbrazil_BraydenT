@@ -32,6 +32,8 @@ public class ProjectileManagerScriptable : MonoBehaviour
 
         laserPointer.gameObject.SetActive(false);
         laserOn = false;
+
+        currentWeaponText.text = currentWeapon.weaponName;
     }
 
 

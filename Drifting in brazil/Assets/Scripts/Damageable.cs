@@ -11,6 +11,7 @@ public class Damageable : MonoBehaviour
     public Image healthBar;
 
     private Transform canvas;
+    public GameObject canvasToOff;
     private Transform player;
     public UnityEvent OnDie;
 
@@ -24,6 +25,7 @@ public class Damageable : MonoBehaviour
         currentHealth = maxHealth;
         canvas = GetComponentInChildren<Canvas>().transform;
         //player = GameObject.FindGameObjectWithTag("Player").transform;
+        canvasToOff.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -35,6 +37,7 @@ public class Damageable : MonoBehaviour
 
     public void Damage(float damageToTake)
     {
+        canvasToOff.gameObject.SetActive(true);
         if (currentHealth <= 0)
             return;
 
@@ -46,6 +49,7 @@ public class Damageable : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            canvasToOff.gameObject.SetActive(false);
             StartCoroutine(Die(ExplosionDelay));
         }
     }
