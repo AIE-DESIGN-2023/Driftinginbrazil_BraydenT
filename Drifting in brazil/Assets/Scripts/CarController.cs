@@ -10,10 +10,12 @@ public class CarController : MonoBehaviour
 
     // Settings
     public float Speed = 50;
+    public float ActiveSpeed;
     public float MaxSpeed = 15;
     public float MoveSpeed;
     public float NitroSpeed;
     public float Drag = 0.98f;
+    public float ActiveDrag;
     public float SteerAngle = 20;
     public float Traction = 1;
 
@@ -32,6 +34,9 @@ public class CarController : MonoBehaviour
     public Transform bonkFXspawn;
     public Transform bonkTextSpawn;
 
+    public GameObject ScrapeFX;
+    public Transform ScrapeFXSpawn;
+
     private Vector3 MoveForce;
 
     Rigidbody rb;
@@ -44,16 +49,19 @@ public class CarController : MonoBehaviour
         currentNitro = minNitro;
         nitroFX.gameObject.SetActive(false);
         nitroOn = false;
+
+        ActiveSpeed = Speed;
+        ActiveDrag = Drag;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        MoveSpeed = Speed + NitroSpeed;
+        MoveSpeed = ActiveSpeed + NitroSpeed;
 
         // Moving
         MoveForce += transform.forward * MoveSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
-        transform.position += MoveForce * Time.deltaTime;
+        rb.position += MoveForce * Time.deltaTime;
 
         // Steering
         float steerInput = Input.GetAxis("Horizontal");
@@ -138,6 +146,19 @@ public class CarController : MonoBehaviour
     {
         //if (collision.gameObject.name == "YourWallName")  // or if(gameObject.CompareTag("YourWallTag"))
         rb.velocity = Vector3.zero;
+
+        //ActiveSpeed = 1;
+        ActiveDrag = 0;
+
+        Instantiate(ScrapeFX, ScrapeFXSpawn.position, ScrapeFXSpawn.rotation, null);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        ActiveSpeed = Speed;
+        ActiveDrag = Drag;
+
+        Destroy(ScrapeFX);
     }
 
     private void OnTriggerEnter(Collider collision)
