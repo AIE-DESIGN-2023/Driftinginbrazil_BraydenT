@@ -11,6 +11,8 @@ public class MoneyManagerScript : MonoBehaviour
     public GameObject ammoPickup;
     public GameObject notEnoughMoneyText;
     public Transform notEnoughMoneyTextSpawn;
+    public GameObject barrelCluster;
+    public Transform barrelClusterSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,19 @@ public class MoneyManagerScript : MonoBehaviour
             if (currentMoney >= 50)
             {
                 Instantiate(ammoPickup, resupplyPoint.position, resupplyPoint.rotation, null);
+                currentMoney -= 50;
+            }
+            else
+            {
+                Instantiate(notEnoughMoneyText, notEnoughMoneyTextSpawn.position, notEnoughMoneyTextSpawn.rotation);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            if (currentMoney >= 100)
+            {
+                Instantiate(barrelCluster, barrelClusterSpawn.position, barrelClusterSpawn.rotation, null);
                 currentMoney -= 50;
             }
             else

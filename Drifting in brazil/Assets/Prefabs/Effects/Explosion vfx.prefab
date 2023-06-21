@@ -9813,10 +9813,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34eeb45488633f4f9dd8b76b1120941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 30
   radius: 2.4
-  power: 20
-  damageStrength: 50
+  power: 30
+  damageStrength: 30
 --- !u!1 &4381123851790649405
 GameObject:
   m_ObjectHideFlags: 0

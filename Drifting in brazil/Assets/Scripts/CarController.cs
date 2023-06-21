@@ -34,8 +34,8 @@ public class CarController : MonoBehaviour
     public Transform bonkFXspawn;
     public Transform bonkTextSpawn;
 
-    public GameObject ScrapeFX;
-    public Transform ScrapeFXSpawn;
+    //public GameObject ScrapeFX;
+    //public Transform ScrapeFXSpawn;
 
     private Vector3 MoveForce;
 
@@ -150,7 +150,7 @@ public class CarController : MonoBehaviour
         //ActiveSpeed = 1;
         ActiveDrag = 0;
 
-        Instantiate(ScrapeFX, ScrapeFXSpawn.position, ScrapeFXSpawn.rotation, null);
+        //Instantiate(ScrapeFX, ScrapeFXSpawn.position, ScrapeFXSpawn.rotation, null);
     }
 
     private void OnCollisionExit(Collision collision)
@@ -158,7 +158,7 @@ public class CarController : MonoBehaviour
         ActiveSpeed = Speed;
         ActiveDrag = Drag;
 
-        Destroy(ScrapeFX);
+        //Destroy(ScrapeFX);
     }
 
     private void OnTriggerEnter(Collider collision)
