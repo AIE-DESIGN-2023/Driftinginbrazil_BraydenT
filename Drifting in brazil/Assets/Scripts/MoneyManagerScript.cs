@@ -27,10 +27,10 @@ public class MoneyManagerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if (currentMoney >= 50)
+            if (currentMoney >= 200)
             {
                 Instantiate(ammoPickup, resupplyPoint.position, resupplyPoint.rotation, null);
-                currentMoney -= 50;
+                currentMoney -= 200;
             }
             else
             {
@@ -40,10 +40,10 @@ public class MoneyManagerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            if (currentMoney >= 100)
+            if (currentMoney >= 300)
             {
                 Instantiate(barrelCluster, barrelClusterSpawn.position, barrelClusterSpawn.rotation, null);
-                currentMoney -= 50;
+                currentMoney -= 300;
             }
             else
             {

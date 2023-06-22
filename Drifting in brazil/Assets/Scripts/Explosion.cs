@@ -34,14 +34,14 @@ public class Explosion : Damager
                 }
             }
             
-            if (colliders[i].gameObject.tag == "Player")
-            {
-                PlayerHealth damageable = colliders[i].gameObject.GetComponent<PlayerHealth>();
-                if (damageable != null)
-                {
-                    damageable.TakeDamage(damageStrength);
-                }
-            }
+            //if (colliders[i].gameObject.tag == "Player")
+            //{
+            //    PlayerHealth damageable = colliders[i].gameObject.GetComponent<PlayerHealth>();
+             //   if (damageable != null)
+             //   {
+            //        damageable.TakeDamage(damageStrength);
+            //    }
+            //}
             
             if (colliders[i].gameObject.tag == "Enemy")
             {
