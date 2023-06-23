@@ -111,6 +111,9 @@ GameObject:
   - component: {fileID: 5168131551055990745}
   - component: {fileID: -3728679916846576473}
   - component: {fileID: 477272843561952979}
+  - component: {fileID: 805227811377352201}
+  - component: {fileID: 6833254364002276872}
+  - component: {fileID: 1341760208308054425}
   m_Layer: 0
   m_Name: Money collectible
   m_TagString: Untagged
@@ -176,6 +179,62 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &805227811377352201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187321788225304330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18f3cd3eab4ecd44872edeafb3d62b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6833254364002276872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187321788225304330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2378081c4b3c74bb189595775dfbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptText: 
+  key: 0
+  onceOnly: 1
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 805227811377352201}
+        m_TargetAssemblyTypeName: Spawner, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5659950697787168235, guid: 111fcec05df8521479a95fbd63360dee, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1341760208308054425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187321788225304330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abbc6c3fcba1fa44b01c9317dbc552f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectToSpawn: {fileID: 0}
+  spawnpoint: {fileID: 0}
 --- !u!1 &4435489002859117224
 GameObject:
   m_ObjectHideFlags: 0

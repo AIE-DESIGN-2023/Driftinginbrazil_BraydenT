@@ -57,8 +57,23 @@ public class GameStateManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void RestartScene()
+    public void LoadPlayScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+    }
+
+    public void LoadControlsScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Controls");
+    }
+
+    public void LoadMenuScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
