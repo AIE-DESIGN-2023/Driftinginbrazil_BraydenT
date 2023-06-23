@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class Damageable : MonoBehaviour
 {
+    //references to health and healthbar
     public float maxHealth;
     public float currentHealth;
     public Image healthBar;
 
+    
     private Transform canvas;
     public GameObject canvasToOff;
     private Transform player;
@@ -24,29 +26,31 @@ public class Damageable : MonoBehaviour
         //set current health to max health
         currentHealth = maxHealth;
         canvas = GetComponentInChildren<Canvas>().transform;
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        //turn off healthbar at the start
         canvasToOff.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        //Vector3 positionToLookAt = new Vector3(player.position.x, canvas.position.y, player.position.z);
 
-        //canvas.LookAt(positionToLookAt);
     }
 
     public void Damage(float damageToTake)
     {
+        //turn on healthbar when taking damage
         canvasToOff.gameObject.SetActive(true);
         if (currentHealth <= 0)
             return;
 
+        //deduct health when taking damage
         currentHealth -= damageToTake;
         Debug.Log("damage taken");
 
         //update image to show new health
         healthBar.fillAmount = currentHealth / maxHealth;
 
+        //die when health drops to 0
         if (currentHealth <= 0)
         {
             canvasToOff.gameObject.SetActive(false);

@@ -30,9 +30,12 @@ public class ProjectileManagerScriptable : MonoBehaviour
         weaponsCollected.Add(currentWeapon);
         //currentWeaponText.text = currentWeapon.weaponName;
 
+        //turn off laser pointer at the start
+
         laserPointer.gameObject.SetActive(false);
         laserOn = false;
 
+        //show weapon name
         currentWeaponText.text = currentWeapon.weaponName;
     }
 
@@ -40,6 +43,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check if left click is true, then fire projectiles if there is ammo in the magazine
         if (Input.GetButton("Fire1"))
         {
             if(currentClip > 0)
@@ -56,6 +60,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
             }     
         }
 
+        //check if right click is true, then turn on or off the laser pointer
         if (Input.GetMouseButtonDown(1))
         {
             if (laserOn == false)
@@ -70,6 +75,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
             }
         }
 
+        //if R is presed, reload weapon
         if(Input.GetKeyDown(KeyCode.R))
         {
             Reload();
@@ -98,6 +104,7 @@ public class ProjectileManagerScriptable : MonoBehaviour
         currentAmmo -= reloadAmount;
     }
 
+    //add ammo to the reserves when picking up ammo
     public void AddAmmo(int ammoAmount)
     {
         currentAmmo += ammoAmount;

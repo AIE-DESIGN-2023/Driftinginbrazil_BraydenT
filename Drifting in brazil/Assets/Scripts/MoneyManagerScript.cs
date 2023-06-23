@@ -14,10 +14,20 @@ public class MoneyManagerScript : MonoBehaviour
     public GameObject barrelCluster;
     public Transform barrelClusterSpawn;
 
+    public GameObject tooltipOpener;
+    public GameObject tooltips;
+
+    private bool tooltipBarOn;
+
     // Start is called before the first frame update
     void Start()
     {
         currentMoney = 100;
+
+        tooltipOpener.gameObject.SetActive(true);
+        tooltips.gameObject.SetActive(false);
+
+        tooltipBarOn = false;
     }
 
     // Update is called once per frame
@@ -38,16 +48,19 @@ public class MoneyManagerScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            if (currentMoney >= 300)
+            if (tooltipBarOn == false)
             {
-                Instantiate(barrelCluster, barrelClusterSpawn.position, barrelClusterSpawn.rotation, null);
-                currentMoney -= 300;
+                tooltipOpener.gameObject.SetActive(false);
+                tooltips.gameObject.SetActive(true);
+                tooltipBarOn = true;
             }
             else
             {
-                Instantiate(notEnoughMoneyText, notEnoughMoneyTextSpawn.position, notEnoughMoneyTextSpawn.rotation);
+                tooltipOpener.gameObject.SetActive(true);
+                tooltips.gameObject.SetActive(false);
+                tooltipBarOn = false;
             }
         }
     }

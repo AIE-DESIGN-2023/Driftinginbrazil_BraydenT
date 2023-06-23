@@ -34,6 +34,8 @@ public class CarController : MonoBehaviour
     public Transform bonkFXspawn;
     public Transform bonkTextSpawn;
 
+    public GameObject ObjectToTeleportTo;
+
     //public GameObject ScrapeFX;
     //public Transform ScrapeFXSpawn;
 
@@ -126,6 +128,10 @@ public class CarController : MonoBehaviour
 
         nitroBar.fillAmount = currentNitro / maxNitro;
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            transform.position = (ObjectToTeleportTo.transform.position);
+        }
     }
 
 
